@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "types": [
+        "../web_wooManager_backend/types"
+      ]
+    }
+  }
+}
