@@ -4,7 +4,6 @@ import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
-import {Copyright} from "../../layouts/MainLayout";
 import {StoreCreateForm} from "../Forms/StoreCreateForm";
 
 
@@ -24,18 +23,13 @@ export const CreateStore = () => {
                         <LockOutlinedIcon/>
                     </Avatar>
                     <Typography component="h1" variant="h1" fontSize={'20px'} pb={2}>
-                        Aktywacja konta
+                        Dodawanie sklepu online
                     </Typography>
                     <Typography component="p" variant="body2" sx={{fontSize: '12px', textAlign: 'justify'}}>
-                        Zanim będziesz mógł/mogła korzystać z naszych usług, wymagana jest aktywacja Twojego konta. W
-                        tym celu wysłaliśmy na Twój adres e-mail wiadomość z kodem aktywacyjnym. Prosimy o wprowadzenie
-                        otrzymanego kodu w poniższe pole, aby dokończyć proces aktywacji konta. Jeśli nie
-                        otrzymałeś/otrzymałaś wiadomości z kodem, upewnij się, że sprawdziłeś/sprawdziłaś swoją skrzynkę
-                        odbiorczą oraz folder ze spamem. W razie problemów z aktywacją, skontaktuj się z nami.
+                        Twoje konto nie ma przypisanego żadnego sklepu - musisz to zrobić aby korzystać z wszystkich usług aplikacji. Zaloguj się do panelu administracyjnego woocommerce i wygeneruj klucze REST API.
                     </Typography>
                     <StoreCreateForm/>
                 </Box>
-                <Box p={10}><Copyright/></Box>
             </Container>
         </>
     )
