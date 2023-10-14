@@ -8,7 +8,7 @@ import {AdminPage} from "../pages/AdminPage";
 import {UsersPage} from "../pages/User/UsersPage";
 import {TutorialsPage} from "../pages/TutorialsPage";
 import {OrdersPage} from "../pages/OrdersPage";
-import { CreateStorePage } from "src/pages/CreateStorePage";
+import { CreateStorePage } from "../pages/CreateStorePage"
 
 export const AuthenticatedApp = () => {
 

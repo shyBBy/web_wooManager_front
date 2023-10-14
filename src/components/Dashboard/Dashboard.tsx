@@ -11,7 +11,7 @@ import {WpLoginPage} from "../../pages/WpLoginPage";
 import {DashboardLastChanges} from "./DashboardLastChanges/DashboardLastChanges";
 import {StoreReportsBasicData} from "./StoreReportsBasicData/StoreReportsBasicData";
 import {DashboardCards} from "./DashboardCards/DashboardCards";
-import { CreateStorePage } from "src/pages/CreateStorePage";
+import { CreateStorePage } from "../../pages/CreateStorePage"
 
 
 // avatar style
