@@ -11,6 +11,7 @@ import {WpLoginPage} from "../../pages/WpLoginPage";
 import {DashboardLastChanges} from "./DashboardLastChanges/DashboardLastChanges";
 import {StoreReportsBasicData} from "./StoreReportsBasicData/StoreReportsBasicData";
 import {DashboardCards} from "./DashboardCards/DashboardCards";
+import { CreateStorePage } from "src/pages/CreateStorePage";
 
 
 // avatar style
@@ -31,39 +32,10 @@ const actionSX = {
 };
 
 
-export const Dashboard = () => {
+export const DashboardContent = () => {
     const { user} = useAuth();
     const wpToken = localStorage.getItem('wpToken');
-
-
-    const [vehiclesWithoutInspection, setVehicleWithoutInspection] = useState(0)
-    const [vehiclesDueForInspection, setVehiclesDueForInspection] = useState(0)
-
-    //
-    // useEffect(() => {
-    //     (async () => {
-    //         const res = await fetch(`${config.API_URL}/vehicle/list?page=1`, {
-    //             credentials: 'include',
-    //         })
-    //         const data = await res.json()
-    //         setVehiclesList(data.vehicles)
-    //     })();
-    // }, []);
-    //
-    // useEffect(() => {
-    //     (() => {
-    //         const countVehicleWithoutInspection = VehicleInspection.checkAllCars(vehiclesList)
-    //         setVehicleWithoutInspection(countVehicleWithoutInspection)
-    //
-    //         const countVehiclesDueForInspection = VehicleInspection.countVehiclesDueForInspection(vehiclesList)
-    //         setVehicleWithoutInspection(countVehiclesDueForInspection)
-    //
-    //
-    //     })();
-    // }, [vehiclesList]);
-
-
-    return (
+    return(
         <>
             <StoreReportsBasicData/>
 
@@ -110,4 +82,19 @@ export const Dashboard = () => {
 
         </>
     )
+}
+
+export const Dashboard = () => {
+    const { user } = useAuth();
+    const [userStore, setUserStore] = useState(user?.store);
+
+    const wpToken = localStorage.getItem('wpToken');
+
+    useEffect(() => {
+        setUserStore(user?.store);
+    }, [user]);
+
+    return (
+        userStore ? <DashboardContent /> : <CreateStorePage />
+    );
 }

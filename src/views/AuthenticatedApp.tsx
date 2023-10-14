@@ -8,6 +8,7 @@ import {AdminPage} from "../pages/AdminPage";
 import {UsersPage} from "../pages/User/UsersPage";
 import {TutorialsPage} from "../pages/TutorialsPage";
 import {OrdersPage} from "../pages/OrdersPage";
+import { CreateStorePage } from "src/pages/CreateStorePage";
 
 export const AuthenticatedApp = () => {
 
@@ -23,6 +24,7 @@ export const AuthenticatedApp = () => {
                 <Route path='/admin' element={<AdminPage/>}/>
                 <Route path='/orders' element={<OrdersPage/>}/>
                 <Route path='/tutorials' element={<TutorialsPage/>}/>
+                <Route path="/store/create" element={<CreateStorePage/>}/>
                 <Route
                     path="/"
                     element={user ? <Navigate to="/dashboard" replace/> : <Navigate to="/dashboard" replace/>}
