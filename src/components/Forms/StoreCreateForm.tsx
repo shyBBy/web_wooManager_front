@@ -32,6 +32,7 @@ export const StoreCreateForm = () => {
         try {
             const res = await fetch(`${config.API_URL}/store/create`, {
                 method: "POST",
+                credentials: 'include',
                 headers: {
                     "Content-Type": "application/json",
                 },
