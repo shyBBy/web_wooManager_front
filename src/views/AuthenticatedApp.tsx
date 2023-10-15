@@ -13,13 +13,17 @@ import { CreateStorePage } from "../pages/CreateStorePage"
 export const AuthenticatedApp = () => {
 
     const {user} = useAuth();
-
+    const [userStore, setUserStore] = useState(user?.store);
+    
+    useEffect(() => {
+        setUserStore(user?.store);
+    }, [user]);
 
     return (
         <>
             <Routes>
-                <Route path="/dashboard" element={<DashboardPage/>}/>
-                <Route path="/users" element={<UsersPage/>}/>
+                <Route path="/dashboard" element={user?.store ? <DashboardPage /> : <StoreCreatePage />}/>
+                  <Route path="/users" element={<UsersPage/>}/>
                 <Route path="/user/:id" element={<UserProfilePage/>}/>
                 <Route path='/admin' element={<AdminPage/>}/>
                 <Route path='/orders' element={<OrdersPage/>}/>

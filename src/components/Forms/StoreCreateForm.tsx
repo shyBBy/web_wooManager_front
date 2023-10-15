@@ -172,16 +172,8 @@ export const StoreCreateForm = () => {
             </Grid>
 
             <Button type="submit" variant="contained" color="primary">
-                Zarejestruj się
+                Dodaj sklep
             </Button>
-            <Grid container justifyContent="flex-end">
-                <Grid item>
-                    <Link href="/login" variant="body2">
-                        Masz już konto? Zaloguj się
-                    </Link>
-                </Grid>
-            </Grid>
-
         </Box>
         </>
     )
