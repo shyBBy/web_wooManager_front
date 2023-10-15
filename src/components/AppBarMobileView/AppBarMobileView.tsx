@@ -85,6 +85,15 @@ export const AppBarMobileView = () => {
                     >
                         WooManager WEB
                     </Typography>
+                    <Typography
+                        component="h1"
+                        variant="h6"
+                        color="inherit"
+                        noWrap
+                        sx={{flexGrow: 1}}
+                    >
+                        {user?.store.name}
+                    </Typography>
                     <Box sx={{flexGrow: 1}}/>
                     <Box sx={{display: {xs: 'flex', md: 'flex'}}}>
                         <Tooltip title="Opcje">

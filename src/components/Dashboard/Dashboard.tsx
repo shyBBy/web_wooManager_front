@@ -38,7 +38,6 @@ export const DashboardContent = () => {
     return(
         <>
             <StoreReportsBasicData/>
-
             <Grid item md={8} sx={{display: {sm: 'none', md: 'block', lg: 'none'}}}/>
 
             <Grid item xs={12} md={7} lg={8}>
@@ -89,6 +88,7 @@ export const Dashboard = () => {
     const [userStore, setUserStore] = useState(user?.store);
 
     const wpToken = localStorage.getItem('wpToken');
+    console.log('---321-321-321-123132-', user?.store)
 
     useEffect(() => {
         setUserStore(user?.store);
