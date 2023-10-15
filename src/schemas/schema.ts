@@ -31,6 +31,13 @@ export const createVehicleSchema = yup.object().shape({
     placeName: yup.string().oneOf(['Łódź', 'Warszawa', 'Lipno', 'Leszno', 'Lębork', 'Lublin', 'Kielce', 'Zabrze', 'Tarnów'], 'Niepoprawna nazwa oddziału firmy.').required('Nazwa oddziału jest wymagana.')
 })
 
+export const createStoreSchema = yup.object().shape({
+    name: yup.string().required('Nazwa sklepu jest wymagana'),
+    url: yup.string().required('Adres url jest wymagany'),
+    consumer_key: yup.string().required('Klucz klienta jest wymagany'),
+    consumer_secret: yup.string().required('Klucz sekretny jest wymagany')
+})
+
 
 export const addLastChangesSchema = yup.object().shape({
     title: yup.string().required('Tytuł jest wymagany'),

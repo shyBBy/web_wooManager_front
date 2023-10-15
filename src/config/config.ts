@@ -1,4 +1,4 @@
 export const config = {
-    API_URL: 'http://localhost:3002',
+    API_URL: 'https://suoari.dev-olczak.pl',
     REACT_APP_LOGOUT: 'api/auth/logout',
 }

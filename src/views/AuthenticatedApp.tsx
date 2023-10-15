@@ -8,21 +8,27 @@ import {AdminPage} from "../pages/AdminPage";
 import {UsersPage} from "../pages/User/UsersPage";
 import {TutorialsPage} from "../pages/TutorialsPage";
 import {OrdersPage} from "../pages/OrdersPage";
+import { CreateStorePage } from "../pages/CreateStorePage"
 
 export const AuthenticatedApp = () => {
 
     const {user} = useAuth();
-
+    const [userStore, setUserStore] = useState(user?.store);
+    
+    useEffect(() => {
+        setUserStore(user?.store);
+    }, [user]);
 
     return (
         <>
             <Routes>
-                <Route path="/dashboard" element={<DashboardPage/>}/>
-                <Route path="/users" element={<UsersPage/>}/>
+                <Route path="/dashboard" element={user?.store ? <DashboardPage /> : <StoreCreatePage />}/>
+                  <Route path="/users" element={<UsersPage/>}/>
                 <Route path="/user/:id" element={<UserProfilePage/>}/>
                 <Route path='/admin' element={<AdminPage/>}/>
                 <Route path='/orders' element={<OrdersPage/>}/>
                 <Route path='/tutorials' element={<TutorialsPage/>}/>
+                <Route path="/store/create" element={<CreateStorePage/>}/>
                 <Route
                     path="/"
                     element={user ? <Navigate to="/dashboard" replace/> : <Navigate to="/dashboard" replace/>}
