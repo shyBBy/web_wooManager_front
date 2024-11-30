@@ -2,7 +2,7 @@ import React, {useContext, useState} from "react";
 import {config} from "../../config/config";
 import {toast} from "react-toastify";
 import TableCell from "@mui/material/TableCell";
-import {Avatar, IconButton, Tooltip} from "@mui/material";
+import {Avatar, Button, IconButton, Tooltip, Typography} from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import {Link} from "react-router-dom";
 import SearchIcon from '@mui/icons-material/Search';
@@ -12,6 +12,7 @@ import TableRow from "@mui/material/TableRow";
 import theme from "../../theme";
 import {CustomerProfileInterface} from 'types'
 import {CustomerStatusConverter} from "../../helpers/customerStatusConverter";
+import {Box} from "@mui/system";
 
 export const CustomerSingleItem = (props: { customer: CustomerProfileInterface }) => {
     const {customer} = props
@@ -88,7 +89,7 @@ export const CustomerSingleItem = (props: { customer: CustomerProfileInterface }
                 <TableCell>{customer.meta.billing_wooccm11}</TableCell>
                 <TableCell>{customer.meta.billing_address_1}</TableCell>
                 <TableCell>{customer.meta.billing_email}</TableCell>
-                <TableCell>{CustomerStatusConverter(customer.meta.pw_user_status)}</TableCell>
+                <TableCell><Button variant='outlined' color='success' sx={{pointerEvents: 'none', cursor: 'not-allowed'}}>{CustomerStatusConverter(customer.meta.pw_user_status)}</Button></TableCell>
                 <TableCell align="right">
                     <Tooltip title="Akceptuj">
                         <IconButton

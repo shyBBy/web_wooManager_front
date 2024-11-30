@@ -11,3 +11,15 @@ export const CustomerStatusConverter = (status: string) => {
     }
 
 }
+
+
+export const getStatusColor = (status: string | any) => {
+    switch (status) {
+        case "Zaakceptowany":
+            return 'success';
+        case "Odrzucony":
+            return 'error';
+        default:
+            return 'white';
+    }
+};

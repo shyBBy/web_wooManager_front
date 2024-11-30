@@ -14,6 +14,33 @@ class API {
         };
     }
 
+    public async getOrder(orderId: string | number) {
+        try {
+            const response = await fetch(`${this.baseUrl}/order/${orderId}`, {
+                credentials: 'include',
+            });
+            const data = await response.json()
+            return data
+        } catch (error) {
+            console.error('Błąd pobierania zamówienia:', error);
+            throw error;
+        }
+    }
+
+    public async getAllOrders() {
+        try {
+
+            const response = await fetch(`${this.baseUrl}/order/list`, {
+                credentials: 'include',
+            });
+            const data = await response.json()
+            return data
+        } catch (error) {
+            console.error('Błąd pobierania wszystkich zamówień:', error);
+            throw error;
+        }
+    }
+
     //REPORTS SECTION START
 
     public async getSalesReport() {

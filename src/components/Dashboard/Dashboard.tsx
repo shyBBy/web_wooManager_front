@@ -1,17 +1,11 @@
 import React, {useEffect, useState} from "react";
 import {Grid, Paper, Typography} from "@mui/material";
-import {MainCard} from "../MainCard";
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-import GroupIcon from '@mui/icons-material/Group';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import InventoryIcon from '@mui/icons-material/Inventory';
-import theme from "../../theme";
 import {useAuth} from "../../hooks/useAuth";
 import {WpLoginPage} from "../../pages/WpLoginPage";
 import {DashboardLastChanges} from "./DashboardLastChanges/DashboardLastChanges";
 import {StoreReportsBasicData} from "./StoreReportsBasicData/StoreReportsBasicData";
 import {DashboardCards} from "./DashboardCards/DashboardCards";
-import { CreateStorePage } from "../../pages/CreateStorePage"
+import {CreateStorePage} from "../../pages/CreateStorePage"
 
 
 // avatar style
@@ -33,9 +27,7 @@ const actionSX = {
 
 
 export const DashboardContent = () => {
-    const { user} = useAuth();
-    const wpToken = localStorage.getItem('wpToken');
-    return(
+    return (
         <>
             <StoreReportsBasicData/>
             <Grid item md={8} sx={{display: {sm: 'none', md: 'block', lg: 'none'}}}/>
@@ -51,7 +43,7 @@ export const DashboardContent = () => {
                 </Paper>
             </Grid>
             <Grid item xs={12} md={5} lg={4}>
-                {wpToken && (
+                {/* {wpToken && ( */}
                     <>
                         <Grid container alignItems="center" justifyContent="space-between">
                             <Grid item>
@@ -62,9 +54,9 @@ export const DashboardContent = () => {
                             <DashboardLastChanges/>
                         </Paper>
                     </>
-                )}
-                {!wpToken && (
-                    <>
+                {/* )}
+                {!wpToken && ( */}
+                    {/* <>
                         <Grid container alignItems="center" justifyContent="space-between">
                             <Grid item>
                                 <Typography variant="overline" color="primary">Autoryzacja</Typography>
@@ -73,8 +65,8 @@ export const DashboardContent = () => {
                         <Paper>
                             <WpLoginPage/>
                         </Paper>
-                    </>
-                )}
+                    </> */}
+                {/* )} */}
 
             </Grid>
 
@@ -84,17 +76,16 @@ export const DashboardContent = () => {
 }
 
 export const Dashboard = () => {
-    const { user } = useAuth();
+    const {user} = useAuth();
     const [userStore, setUserStore] = useState(user?.store);
 
     const wpToken = localStorage.getItem('wpToken');
-    console.log('---321-321-321-123132-', user?.store)
 
     useEffect(() => {
         setUserStore(user?.store);
     }, [user]);
 
     return (
-        userStore ? <DashboardContent /> : <CreateStorePage />
+        userStore ? <DashboardContent/> : <CreateStorePage/>
     );
 }

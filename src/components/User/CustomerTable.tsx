@@ -98,13 +98,6 @@ export const CustomerTable = () => {
                                            }}/>
                             </form>
                         </Box>
-                        {/*<Box>*/}
-                        {/*    <Tooltip title="Filtry">*/}
-                        {/*        <IconButton>*/}
-                        {/*            <FilterListIcon/>*/}
-                        {/*        </IconButton>*/}
-                        {/*    </Tooltip>*/}
-                        {/*</Box>*/}
                     </Toolbar>
                     <TableContainer>
                         <Table size="medium">

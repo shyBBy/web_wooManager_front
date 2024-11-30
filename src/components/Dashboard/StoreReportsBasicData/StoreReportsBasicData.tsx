@@ -37,9 +37,6 @@ export const StoreReportsBasicData = () => {
         }
     };
 
-
-    console.log(salesReport)
-
     return(
         <>
             {/* row 1 */}
