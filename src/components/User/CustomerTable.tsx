@@ -36,7 +36,6 @@ export const CustomerTable = () => {
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [loading, setLoading] = useState(true); // Dodane pole loading
 
-    const {checkWpToken, wpToken} = useAuth()
 
     const navigate = useNavigate()
 
@@ -50,7 +49,7 @@ export const CustomerTable = () => {
     useEffect(() => {
         (async () => {
             try {
-                checkWpToken();
+            
                 setLoading(true); // Ustawienie loading na true przed pobraniem danych
 
                 const res = await fetch(`${config.API_URL}/customer/list?page=${page}&perPage=${rowsPerPage}`, {

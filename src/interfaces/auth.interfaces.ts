@@ -39,12 +39,3 @@ export interface Login {
     email: string;
     password: string;
 }
-
-export interface TokenResponse {
-    token: string;
-}
-
-export interface WpLogin {
-    username: string;
-    password: string;
-}

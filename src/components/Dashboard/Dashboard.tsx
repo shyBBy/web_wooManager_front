@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Grid, Paper, Typography} from "@mui/material";
 import {useAuth} from "../../hooks/useAuth";
-import {WpLoginPage} from "../../pages/WpLoginPage";
 import {DashboardLastChanges} from "./DashboardLastChanges/DashboardLastChanges";
 import {StoreReportsBasicData} from "./StoreReportsBasicData/StoreReportsBasicData";
 import {DashboardCards} from "./DashboardCards/DashboardCards";
@@ -43,8 +42,7 @@ export const DashboardContent = () => {
                 </Paper>
             </Grid>
             <Grid item xs={12} md={5} lg={4}>
-                {/* {wpToken && ( */}
-                    <>
+                
                         <Grid container alignItems="center" justifyContent="space-between">
                             <Grid item>
                                 <Typography variant="overline" color="primary">Ostatnie zmiany w aplikacji</Typography>
@@ -53,20 +51,7 @@ export const DashboardContent = () => {
                         <Paper>
                             <DashboardLastChanges/>
                         </Paper>
-                    </>
-                {/* )}
-                {!wpToken && ( */}
-                    {/* <>
-                        <Grid container alignItems="center" justifyContent="space-between">
-                            <Grid item>
-                                <Typography variant="overline" color="primary">Autoryzacja</Typography>
-                            </Grid>
-                        </Grid>
-                        <Paper>
-                            <WpLoginPage/>
-                        </Paper>
-                    </> */}
-                {/* )} */}
+                    
 
             </Grid>
 
@@ -78,8 +63,6 @@ export const DashboardContent = () => {
 export const Dashboard = () => {
     const {user} = useAuth();
     const [userStore, setUserStore] = useState(user?.store);
-
-    const wpToken = localStorage.getItem('wpToken');
 
     useEffect(() => {
         setUserStore(user?.store);
