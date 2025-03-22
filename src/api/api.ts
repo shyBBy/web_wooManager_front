@@ -41,11 +41,88 @@ class API {
         }
     }
 
+    public async changeOrderStatus(orderId: string, newStatus: string) {
+        try {
+            const headers = await this.getAuthorizationHeader();
+            const response = await fetch(`${this.baseUrl}/orders/${orderId}/status`, {
+                method: 'PUT',
+                headers: {
+                    ...headers,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({status: newStatus}),
+            });
+
+        } catch (error) {
+            console.error('Błąd zmiany statusu zamówienia:', error);
+            throw error;
+        }
+    }
+
+    public async getLoggedInUser() {
+        try {
+            const headers = await this.getAuthorizationHeader();
+            const response = await fetch(`${this.baseUrl}/user`, {
+                headers,
+            });
+
+        } catch (error) {
+            console.error('Błąd pobierania zalogowanego użytkownika:', error);
+            throw error;
+        }
+    }
+
+    //REFUNDS SECTION START
+
+    public async getAllRefunds() {
+        try {
+
+            const response = await fetch(`${this.baseUrl}/refund/list`, {
+                credentials: 'include',
+            });
+            const data = await response.json()
+            return data
+        } catch (error) {
+            console.error('Błąd pobierania wszystkich zamówień:', error);
+            throw error;
+        }
+    }
+
+    public async getRefund(refundId: string | number) {
+        try {
+            const response = await fetch(`${this.baseUrl}/refund/${refundId}`, {
+                credentials: 'include',
+            });
+            const data = await response.json()
+            return data
+        } catch (error) {
+            console.error('Błąd pobierania zwrotu:', error);
+            throw error;
+        }
+    }
+
+
+
+    //REFUNDS SECTION END
+
     //REPORTS SECTION START
 
     public async getSalesReport() {
         try {
-            const response = await fetch(`${this.baseUrl}/store/reports/sales`, {
+            const response = await fetch(`${this.baseUrl}/order/reports/sales`, {
+                credentials: 'include',
+            });
+            const data = await response.json()
+            return data
+        } catch (error) {
+            console.error('Błąd pobierania raportu:', error);
+            throw error;
+        }
+    }
+
+    public async getTopProductSalesReport() {
+        try {
+            const response = await fetch(`${this.baseUrl}/order/reports/topproducts`, {
                 credentials: 'include',
             });
             const data = await response.json()

@@ -9,6 +9,7 @@ import {UsersPage} from "../pages/User/UsersPage";
 import {TutorialsPage} from "../pages/TutorialsPage";
 import {OrdersPage} from "../pages/OrdersPage";
 import { CreateStorePage } from "../pages/CreateStorePage"
+import { OrderProfilePage } from "../pages/Order/OrderProfilePage";
 
 
 export const AuthenticatedApp = () => {
@@ -23,6 +24,7 @@ export const AuthenticatedApp = () => {
                 <Route path="/user/:id" element={<UserProfilePage/>}/>
                 <Route path='/admin' element={<AdminPage/>}/>
                 <Route path='/orders' element={<OrdersPage/>}/>
+                <Route path='/order/:id' element={<OrderProfilePage/>}/>
                 <Route path='/tutorials' element={<TutorialsPage/>}/>
                 <Route path="/store/create" element={<CreateStorePage/>}/>
                 <Route

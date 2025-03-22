@@ -9,13 +9,18 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import TableBody from "@mui/material/TableBody";
-import {CustomerSingleItem} from "../User/CustomerSingleItem";
-import {CustomerTableOptions} from "../User/CustomerTableOptions";
-import {OrderSingleItem} from "./OrderSingleItem";
 
+import {OrderSingleItem} from "./OrderSingleItem";
+import { Title } from "@mui/icons-material";
+import { GetListOfOrdersResponse } from "src/interfaces/order.interfaces";
+
+
+interface OrderListProps {
+    orders: GetListOfOrdersResponse[];
+}
 
 export const OrderList = () => {
-    const [ordersList, setOrdersList] = useState<GetListOfAllOrdersResponse>([]);
+    const [ordersList, setOrdersList] = useState<GetListOfOrdersResponse>([]);
     const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState('')
     const [inputVal, setInputVal] = useState(search);
@@ -42,11 +47,13 @@ export const OrderList = () => {
         try {
             setLoading(true);
             const data = await Api.getAllOrders();
-            setOrdersList(data.orders);
+            setOrdersList(data);
         } catch (error) {
             console.error("Błąd pobierania zamówień", error);
+            
         } finally {
             setLoading(false);
+          
         }
     };
 
@@ -77,9 +84,9 @@ export const OrderList = () => {
                         <Table size="medium">
                             <TableHead>
                                 <TableRow>
-                                    <TableCell>Nazwa firmy</TableCell>
-                                    <TableCell>NIP</TableCell>
-                                    <TableCell>Adres</TableCell>
+                                    <TableCell>Zamówienie</TableCell>
+                                    <TableCell>Data</TableCell>
+                                    <TableCell>Status</TableCell>
                                     <TableCell>E-mail</TableCell>
                                     <TableCell>Status</TableCell>
                                     <TableCell align="right"></TableCell>
@@ -88,7 +95,9 @@ export const OrderList = () => {
                             <TableBody>
                                 {
                                     ordersList.map(order => (
-                                        <OrderSingleItem order={order.order} key={order.order.id}/>
+                                        <>
+                                            <OrderSingleItem order={order} key={order.id}/>
+                                        </>
                                     ))
                                 }
                             </TableBody>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import {Button, IconButton, Tooltip} from "@mui/material";
@@ -9,19 +9,26 @@ import CloseIcon from "@mui/icons-material/Close";
 import {Link} from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { GetOneOrderResponse, OrderProfileInterface } from "src/interfaces/order.interfaces";
+import { formatDateToPolish } from "../../utils/time.utils";
 
-export const OrderSingleItem = (props: any) => {
-    const {order} = props
+// Typowanie propsów komponentu
+interface OrderSingleItemProps {
+    order: OrderProfileInterface;
+}
 
 
+export const OrderSingleItem: React.FC<OrderSingleItemProps> = ({ order }) => {
+   
+    
     return(
         <>
             <TableRow>
                 <TableCell>
-                    ORDER 1
+                    #{order.id} {order.billing.first_name} {order.billing.last_name}
                 </TableCell>
-                <TableCell>ORDER 2</TableCell>
-                <TableCell>ORDER 3</TableCell>
+                <TableCell>{formatDateToPolish(order.date_created)}</TableCell>
+                <TableCell>{order.status}</TableCell>
                 <TableCell>ORDER 4</TableCell>
                 <TableCell>ORDER 5</TableCell>
                 <TableCell align="right">
@@ -41,8 +48,9 @@ export const OrderSingleItem = (props: any) => {
                             <CloseIcon />
                         </IconButton>
                     </Tooltip>
-                    <Link to={`https://wyszukiwarkaregon.stat.gov.pl/appBIR/index.aspx`}>
-                        <Tooltip title="Sprawdź NIP">
+            
+                    <Link to={`/order/${order.id}`}>
+                        <Tooltip title="Szczegóły">
                             <IconButton sx={{color: theme.palette.text.primary}}>
                                 <SearchIcon/>
                             </IconButton>
