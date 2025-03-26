@@ -50,9 +50,9 @@ export const DashboardContent = () => {
                                 <Typography variant="overline" color="primary">Ostatnie zmiany w aplikacji</Typography>
                             </Grid>
                         </Grid>
-                        <Paper>
-                            <DashboardLastChanges/>
-                        </Paper>
+                        {/* <Paper>
+                            <Typography variant="overline" color="primary">Ostatnie zmiany w aplikacji</Typography>
+                        </Paper> */}
                     </>
                 {/* )}
                 {!wpToken && ( */}
