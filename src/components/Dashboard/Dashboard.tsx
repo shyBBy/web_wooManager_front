@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {Grid, Paper, Typography} from "@mui/material";
 import {useAuth} from "../../hooks/useAuth";
-import {DashboardLastChanges} from "./DashboardLastChanges/DashboardLastChanges";
+
 import {StoreReportsBasicData} from "./StoreReportsBasicData/StoreReportsBasicData";
 import {DashboardCards} from "./DashboardCards/DashboardCards";
 import {CreateStorePage} from "../../pages/CreateStorePage"
@@ -48,9 +48,7 @@ export const DashboardContent = () => {
                                 <Typography variant="overline" color="primary">Ostatnie zmiany w aplikacji</Typography>
                             </Grid>
                         </Grid>
-                        <Paper>
-                            <DashboardLastChanges/>
-                        </Paper>
+                        
                     
 
             </Grid>
