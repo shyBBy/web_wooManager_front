@@ -1,4 +1,7 @@
-import {ErrorRes} from 'types'
+export interface ErrorRes {
+    statusCode: number;
+    message: string;
+}
 
 export const setIfErrMsg = async (res: Response) => {
     let errMsg: string | null = null;
