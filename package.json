@@ -70,7 +70,6 @@
   "devDependencies": {
     "@babel/core": "^7.20.7",
     "@types/react-query": "^1.2.9",
-    "customize-cra": "^1.0.0",
-    "react-app-rewire-alias": "^1.1.7"
+    "customize-cra": "^1.0.0"
   }
 }
