@@ -1,5 +1,4 @@
 import React, {SyntheticEvent, useEffect, useState} from "react";
-import {GetListOfAllOrdersResponse} from 'types'
 import Api from "../../api/api";
 import {useNavigate} from "react-router-dom";
 import {Box, CircularProgress, TableContainer, TextField, Toolbar} from "@mui/material";
@@ -9,10 +8,9 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import TableBody from "@mui/material/TableBody";
-
 import {OrderSingleItem} from "./OrderSingleItem";
 import { Title } from "@mui/icons-material";
-import { GetListOfOrdersResponse } from "src/interfaces/order.interfaces";
+import { GetListOfOrdersResponse } from "../../interfaces/order.interfaces";
 
 
 interface OrderListProps {

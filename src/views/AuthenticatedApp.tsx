@@ -3,9 +3,7 @@ import {Navigate, Route, Routes, useNavigate} from "react-router-dom";
 import {useAuth} from "../hooks/useAuth";
 import {DashboardPage} from "../pages/DashboardPage";
 import {NotFound404} from "./NotFound404";
-import {UserProfilePage} from "../pages/User/UserProfilePage";
 import {AdminPage} from "../pages/AdminPage";
-import {UsersPage} from "../pages/User/UsersPage";
 import {TutorialsPage} from "../pages/TutorialsPage";
 import {OrdersPage} from "../pages/OrdersPage";
 import { CreateStorePage } from "../pages/CreateStorePage"
@@ -20,8 +18,6 @@ export const AuthenticatedApp = () => {
         <>
             <Routes>
                 <Route path="/dashboard" element={<DashboardPage/>}/>
-                <Route path="/users" element={<UsersPage/>}/>
-                <Route path="/user/:id" element={<UserProfilePage/>}/>
                 <Route path='/admin' element={<AdminPage/>}/>
                 <Route path='/orders' element={<OrdersPage/>}/>
                 <Route path='/order/:id' element={<OrderProfilePage/>}/>

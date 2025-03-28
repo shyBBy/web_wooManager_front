@@ -1,6 +1,5 @@
 import React from "react";
 import {MainLayout} from "../layouts/MainLayout";
-import {UsersTable} from "../components/Admin/UsersTable";
 import {Stats} from "../components/Admin/Stats";
 import {Grid, Paper, Typography} from "@mui/material";
 import {AdminAddLastChange} from "../components/Admin/AdminAddLastChange";
@@ -21,7 +20,7 @@ export const AdminPage = () => {
                             </Grid>
                         </Grid>
                         <Paper sx={{p: 2, display: 'flex', flexDirection: 'column'}}>
-                            <UsersTable/>
+                            
                         </Paper>
                     </Grid>
                     <Grid item xs={12} md={7} lg={3}>

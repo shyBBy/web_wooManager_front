@@ -9,7 +9,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import {Link} from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { GetOneOrderResponse, OrderProfileInterface } from "src/interfaces/order.interfaces";
+import { GetOneOrderResponse, OrderProfileInterface } from "../../interfaces/order.interfaces";
 import { formatDateToPolish } from "../../utils/time.utils";
 
 // Typowanie propsów komponentu
