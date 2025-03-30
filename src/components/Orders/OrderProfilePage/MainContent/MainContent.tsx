@@ -11,10 +11,12 @@ import {config} from "../../../../config/config";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 
 export const MainContent = (props: any) => {
-    const {order} = props
+    const { order } = props;
+    const orderData = order.order; // Przypisanie order.order do zmiennej lokalnej
 
     const [value, setValue] = React.useState(0);
 
+    console.log(order);
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
@@ -36,15 +38,16 @@ export const MainContent = (props: any) => {
                     alignItems: 'center',
                     marginBottom: '10%'
                 }}>
-                    
                     <Box p={1}>
                         <Stack direction={'row'}>
                             <Typography variant="body2" color="textSecondary" mr={1}>Oddział: </Typography>
-                            <Typography variant="body2">{order.id}</Typography>
+                            <Typography variant="body2">{orderData.id}</Typography> {/* Użycie orderData.id */}
                         </Stack>
-                        <a href={'https://historiapojazdu.gov.pl'}><Typography variant="body2" color="textSecondary"
-                                                                               mr={1}>Sprawdź pojazd w
-                            CEPIKU</Typography></a>
+                        <a href={'https://historiapojazdu.gov.pl'}>
+                            <Typography variant="body2" color="textSecondary" mr={1}>
+                                Sprawdź pojazd w CEPIKU
+                            </Typography>
+                        </a>
                         PRZYCISK
                     </Box>
                 </Paper>
@@ -52,10 +55,12 @@ export const MainContent = (props: any) => {
             <Grid item xs={12} md={7} lg={9} mt={5}>
                 <Grid container alignItems="center" justifyContent="space-between">
                     <Grid item>
-                        <Typography variant="overline">Podstawowe infmormacje o pojeździe</Typography>
+                        <Typography variant="overline">
+                            Podstawowe infmormacje o zamówieniu nr: {orderData.id} {/* Użycie orderData.id */}
+                        </Typography>
                     </Grid>
                 </Grid>
-                <Paper sx={{p: 2, display: 'flex', flexDirection: 'column',}}>
+                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
                     JAKIES INFO
                 </Paper>
             </Grid>
@@ -131,5 +136,5 @@ export const MainContent = (props: any) => {
                 </Paper>
             </Grid>
         </>
-    )
-}
+    );
+};
