@@ -101,6 +101,25 @@ class API {
         }
     }
 
+    public async refreshFurgonetkaToken(): Promise<{ isSuccess: boolean; message: string; statusCode: number }> {
+        try {
+            const response = await fetch(`${this.baseUrl}/store/refresh/token`, {
+                method: 'GET',
+                credentials: 'include',
+            });
+    
+            if (!response.ok) {
+                throw new Error(`Błąd odnowienia tokenu: ${response.status}`);
+            }
+    
+            const data = await response.json();
+            return data; // Zwraca obiekt z `isSuccess`, `message` i `statusCode`
+        } catch (error) {
+            console.error('Błąd odnowienia tokenu Furgonetki:', error);
+            throw error;
+        }
+    }
+
 
 
     //REFUNDS SECTION END

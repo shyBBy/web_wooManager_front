@@ -9,14 +9,20 @@ import Tab from '@mui/material/Tab';
 import {a11yProps, TabPanel} from "../../../TabPanel";
 import {config} from "../../../../config/config";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
+import theme from "../../../../theme";
+import { getStatusColor, OrderStatusConverter } from "../../../../helpers/orderStatusConverter";
 
 export const MainContent = (props: any) => {
-    const { order } = props;
-    const orderData = order.order; // Przypisanie order.order do zmiennej lokalnej
+    const { data } = props; 
+    const order = data.order; 
+    const shipping = data.shipping;
+    const shipping_tracking = data.shipping_tracking;
 
     const [value, setValue] = React.useState(0);
 
-    console.log(order);
+    console.log("order", order);
+    console.log("shipping", shipping);
+    console.log("shipping_tracking", shipping_tracking);
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
@@ -27,7 +33,7 @@ export const MainContent = (props: any) => {
             <Grid item xs={12} md={7} lg={2.5}>
                 <Grid container alignItems="center" justifyContent="space-between">
                     <Grid item>
-                        <Typography variant="overline">Zdjęcie</Typography>
+                        <Typography variant="overline">Zamówienie</Typography>
                     </Grid>
                 </Grid>
                 <Paper sx={{
@@ -38,17 +44,11 @@ export const MainContent = (props: any) => {
                     alignItems: 'center',
                     marginBottom: '10%'
                 }}>
-                    <Box p={1}>
+                    <Box>
                         <Stack direction={'row'}>
-                            <Typography variant="body2" color="textSecondary" mr={1}>Oddział: </Typography>
-                            <Typography variant="body2">{orderData.id}</Typography> {/* Użycie orderData.id */}
+                            <Typography variant="h5" color="textSecondary" mr={1}>#</Typography>
+                            <Typography variant="h5" color="#EC3656FF">{order.id}</Typography>
                         </Stack>
-                        <a href={'https://historiapojazdu.gov.pl'}>
-                            <Typography variant="body2" color="textSecondary" mr={1}>
-                                Sprawdź pojazd w CEPIKU
-                            </Typography>
-                        </a>
-                        PRZYCISK
                     </Box>
                 </Paper>
             </Grid>
@@ -56,12 +56,14 @@ export const MainContent = (props: any) => {
                 <Grid container alignItems="center" justifyContent="space-between">
                     <Grid item>
                         <Typography variant="overline">
-                            Podstawowe infmormacje o zamówieniu nr: {orderData.id} {/* Użycie orderData.id */}
+                            Aktualny status zamówienia
                         </Typography>
                     </Grid>
                 </Grid>
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                    JAKIES INFO
+                    <Typography variant="body2" color={getStatusColor(order?.status)} mb={1}>
+                    {OrderStatusConverter(order?.status)}
+                    </Typography>
                 </Paper>
             </Grid>
             <Grid item xs={12} md={7} lg={7}>
