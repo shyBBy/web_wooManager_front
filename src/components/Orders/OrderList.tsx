@@ -45,6 +45,7 @@ export const OrderList = () => {
         try {
             setLoading(true);
             const data = await Api.getAllOrders();
+            console.log(data);
             setOrdersList(data);
         } catch (error) {
             console.error("Błąd pobierania zamówień", error);
@@ -93,9 +94,7 @@ export const OrderList = () => {
                             <TableBody>
                                 {
                                     ordersList.map(order => (
-                                        <>
-                                            <OrderSingleItem order={order} key={order.id}/>
-                                        </>
+                                        <OrderSingleItem order={order} key={order.id} />
                                     ))
                                 }
                             </TableBody>

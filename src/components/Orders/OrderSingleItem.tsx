@@ -11,6 +11,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { GetOneOrderResponse, OrderProfileInterface } from "../../interfaces/order.interfaces";
 import { formatDateToPolish } from "../../utils/time.utils";
+import { getStatusColor, OrderStatusConverter } from "../../helpers/orderStatusConverter";
 
 // Typowanie propsów komponentu
 interface OrderSingleItemProps {
@@ -28,7 +29,7 @@ export const OrderSingleItem: React.FC<OrderSingleItemProps> = ({ order }) => {
                     #{order.id} {order.billing.first_name} {order.billing.last_name}
                 </TableCell>
                 <TableCell>{formatDateToPolish(order.date_created)}</TableCell>
-                <TableCell>{order.status}</TableCell>
+                <TableCell color={getStatusColor(order?.status)}>{OrderStatusConverter(order?.status)}</TableCell>
                 <TableCell>ORDER 4</TableCell>
                 <TableCell>ORDER 5</TableCell>
                 <TableCell align="right">

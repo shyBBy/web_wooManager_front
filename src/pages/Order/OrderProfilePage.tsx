@@ -40,7 +40,7 @@ export const OrderProfilePage = () => {
 
     return (
         <MainLayout>
-            <MainContent order={order} />
+            <MainContent data={order} />
         </MainLayout>
     );
 };
