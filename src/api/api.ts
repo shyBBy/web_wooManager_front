@@ -122,19 +122,19 @@ class API {
 
     public async refreshOrderStatus(): Promise<{ inTransit: any[]; delivered: any[] }> {
         try {
-            const response = await fetch(`${this.baseUrl}/refresh/orders`, {
+            const response = await fetch(`${this.baseUrl}/status/refresh/orders`, {
                 method: 'GET',
                 credentials: 'include',
             });
 
             if (!response.ok) {
-                throw new Error(`Błąd odświeżania statusów zamówień: ${response.status}`);
+                throw new Error(`1 Błąd odświeżania statusów zamówień: ${response.status}`);
             }
 
             const data = await response.json();
             return data; // Zwraca obiekt z `inTransit` i `delivered`
         } catch (error) {
-            console.error('Błąd odświeżania statusów zamówień:', error);
+            console.error('2 Błąd odświeżania statusów zamówień:', error);
             throw error;
         }
     }
