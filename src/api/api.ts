@@ -122,7 +122,7 @@ class API {
 
     public async refreshOrderStatus(): Promise<{ inTransit: any[]; delivered: any[] }> {
         try {
-            const response = await fetch(`${this.baseUrl}/status`, {
+            const response = await fetch(`${this.baseUrl}/refresh/orders`, {
                 method: 'GET',
                 credentials: 'include',
             });
