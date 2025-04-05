@@ -1,72 +1,41 @@
-import React, {useEffect, useState} from "react";
-import {Grid, Paper, Typography} from "@mui/material";
-import {useAuth} from "../../hooks/useAuth";
+import React, { useEffect, useState } from "react";
+import { Grid, Paper, Typography } from "@mui/material";
+import { useAuth } from "../../hooks/useAuth";
 
-import {StoreReportsBasicData} from "./StoreReportsBasicData/StoreReportsBasicData";
-import {DashboardCards} from "./DashboardCards/DashboardCards";
-import {CreateStorePage} from "../../pages/CreateStorePage"
-
-
-// avatar style
-const avatarSX = {
-    width: 36,
-    height: 36,
-    fontSize: '1rem'
-};
-
-// action style
-const actionSX = {
-    mt: 0.75,
-    ml: 1,
-    top: 'auto',
-    right: 'auto',
-    alignSelf: 'flex-start',
-    transform: 'none'
-};
-
+import { StoreReportsBasicData } from "./StoreReportsBasicData/StoreReportsBasicData";
+import { DashboardCards } from "./DashboardCards/DashboardCards";
+import { CreateStorePage } from "../../pages/CreateStorePage";
 
 export const DashboardContent = () => {
     return (
-        <>
-            <StoreReportsBasicData/>
-            <Grid item md={8} sx={{display: {sm: 'none', md: 'block', lg: 'none'}}}/>
-
-            <Grid item xs={12} md={7} lg={8}>
-                <Grid container alignItems="center" justifyContent="space-between">
-                    <Grid item>
-                        <Typography variant="overline" color="primary">DASHBOARD</Typography>
-                    </Grid>
-                </Grid>
-                <Paper sx={{p: 2, display: 'flex', flexDirection: 'column'}}>
-                    <DashboardCards/>
+        <Grid container spacing={3} sx={{ padding: 2 }}>
+            {/* Sekcja raportów */}
+            <Grid item xs={12}>
+                <Paper sx={{ p: 2 }}>
+                    <StoreReportsBasicData />
                 </Paper>
             </Grid>
-            <Grid item xs={12} md={5} lg={4}>
-                
-                        <Grid container alignItems="center" justifyContent="space-between">
-                            <Grid item>
-                                <Typography variant="overline" color="primary">Ostatnie zmiany w aplikacji</Typography>
-                            </Grid>
-                        </Grid>
-                        
-                    
 
+            {/* Karty dashboardu */}
+            <Grid item xs={12}>
+                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
+                    <Typography variant="h6" gutterBottom>
+                        Dashboard
+                    </Typography>
+                    <DashboardCards />
+                </Paper>
             </Grid>
-
-
-        </>
-    )
-}
+        </Grid>
+    );
+};
 
 export const Dashboard = () => {
-    const {user} = useAuth();
+    const { user } = useAuth();
     const [userStore, setUserStore] = useState(user?.store);
 
     useEffect(() => {
         setUserStore(user?.store);
     }, [user]);
 
-    return (
-        userStore ? <DashboardContent/> : <CreateStorePage/>
-    );
-}
+    return userStore ? <DashboardContent /> : <CreateStorePage />;
+};
