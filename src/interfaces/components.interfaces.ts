@@ -1,17 +1,13 @@
-
 import React from "react";
 
 
 export interface MainCardPropInterface {
-    title?: string,
-    count?: any,
-    color?: string,
-    direction?: string,
-    spacing?: string | number,
-    variant?: string,
-    description?: string,
-    chipColor?: string,
-    icon?: any,
+    title: string;
+    count: string | number; // Zmieniono typ na string | number
+    description: string;
+    icon: JSX.Element;
+    onClick?: (() => void) | null; // Obsługa null
+    link?: string | null;         // Obsługa null
 }
 
 export interface BasicInfoStackInterface {

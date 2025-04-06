@@ -1,28 +1,39 @@
 import React, { useEffect, useState } from "react";
-import { Grid, Paper, Typography } from "@mui/material";
+import { Grid, Box, Typography, Paper } from "@mui/material";
 import { useAuth } from "../../hooks/useAuth";
 
 import { StoreReportsBasicData } from "./StoreReportsBasicData/StoreReportsBasicData";
-import { DashboardCards } from "./DashboardCards/DashboardCards";
 import { CreateStorePage } from "../../pages/CreateStorePage";
+import { DashboardCharts } from "./DashboardCharts/DashboardCharts";
+import { DashboardActions } from "./DashboardActions/DashboardActions";
 
 export const DashboardContent = () => {
     return (
-        <Grid container spacing={3} sx={{ padding: 2 }}>
+        <Grid container spacing={{ xs: 1.5, sm: 3 }} sx={{ padding: { xs: 1, sm: 2 } }}>
             {/* Sekcja raportów */}
             <Grid item xs={12}>
-                <Paper sx={{ p: 2 }}>
+                <Box sx={{ p: { xs: 1, sm: 2 } }}> {/* Zmieniono Paper na Box */}
                     <StoreReportsBasicData />
+                </Box>
+            </Grid>
+
+            {/* Sekcja wykresów */}
+            <Grid item xs={12}>
+                <Paper sx={{ p: { xs: 1, sm: 2 } }}>
+                    <Typography variant="h6" gutterBottom>
+                        Statystyki sprzedaży
+                    </Typography>
+                    {/* <DashboardCharts /> */}
                 </Paper>
             </Grid>
 
-            {/* Karty dashboardu */}
+            {/* Sekcja akcji */}
             <Grid item xs={12}>
-                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
+                <Paper sx={{ p: { xs: 1, sm: 2 } }}>
                     <Typography variant="h6" gutterBottom>
-                        Dashboard
+                        Zarządzanie
                     </Typography>
-                    <DashboardCards />
+                    <DashboardActions />
                 </Paper>
             </Grid>
         </Grid>

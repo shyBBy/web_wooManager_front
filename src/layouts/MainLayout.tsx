@@ -22,20 +22,23 @@ interface Props {
 
 export const MainLayout: FC<Props> = ({ children }) => (
     <>
-        <Box sx={{ display: 'flex' }}>
+        <Box
+            sx={{
+                display: 'flex',
+                backgroundColor: theme.palette.background.default, // Tło dla całego layoutu
+                minHeight: '100vh', // Wypełnienie całej wysokości ekranu
+            }}
+        >
             <CssBaseline />
             <AppBarMobileView />
             <Box
                 component="main"
                 sx={{
-                    backgroundColor: theme.palette.background.default,
                     flexGrow: 1,
-                    height: '100vh',
                     overflow: 'auto',
-                    // Media Queries for iPad Air 11"
+                    padding: '16px', // Padding dla zawartości
                     [theme.breakpoints.down('md')]: {
-                        height: 'auto', // Dostosowanie wysokości dla mniejszych ekranów
-                        padding: '16px', // Dodanie paddingu
+                        padding: '16px', // Dostosowanie paddingu dla mniejszych ekranów
                     },
                     [theme.breakpoints.between(1024, 1366)]: {
                         padding: '24px', // Specjalne ustawienia dla iPada Air 11"
@@ -43,7 +46,14 @@ export const MainLayout: FC<Props> = ({ children }) => (
                 }}
             >
                 <Toolbar />
-                <Container maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
+                <Container
+                    maxWidth={false} // Pełna szerokość kontenera
+                    sx={{
+                        mt: 4,
+                        mb: 4,
+                        padding: 0, // Usuń padding wewnętrzny kontenera
+                    }}
+                >
                     <Grid container spacing={2}>
                         {children}
                     </Grid>

@@ -2,8 +2,8 @@ import React from "react";
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
-import { Button, Card, CardContent, Grid, Link, Typography } from "@mui/material";
-import { Box } from "@mui/system";
+import { Grid } from "@mui/material";
+import { MainCard } from "../../MainCard";
 import Api from "../../../api/api";
 
 const iconStyle = {
@@ -67,61 +67,17 @@ const cardsData = [
 
 export const DashboardCards = () => {
     return (
-        <Grid
-            container
-            spacing={3}
-            sx={{
-                '@media (min-width: 1024px) and (max-width: 1366px) and (orientation: landscape)': {
-                    justifyContent: 'center',
-                },
-                '@media (min-width: 1024px) and (max-width: 1366px) and (orientation: portrait)': {
-                    justifyContent: 'flex-start',
-                },
-            }}
-        >
+        <Grid container spacing={3}>
             {cardsData.map((card, index) => (
-                <Grid
-                    item
-                    xs={12}
-                    sm={6}
-                    md={6}
-                    lg={4}
-                    key={index}
-                    sx={{
-                        '@media (min-width: 1024px) and (max-width: 1366px)': {
-                            maxWidth: '300px',
-                        },
-                    }}
-                >
-                    <Card sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-                        <CardContent sx={{ flexGrow: 1 }}>
-                            <Typography variant="h6">{card.title}</Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                {card.description}
-                            </Typography>
-                        </CardContent>
-                        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', p: 2 }}>
-                            {card.icon}
-                        </Box>
-                        <Box sx={{ p: 2 }}>
-                            {card.onClick ? (
-                                <Button onClick={card.onClick} variant="contained" fullWidth>
-                                    {card.button}
-                                </Button>
-                            ) : (
-                                <Button
-                                    component={Link}
-                                    href={card.link}
-                                    target="_blank"
-                                    rel="noopener"
-                                    variant="contained"
-                                    fullWidth
-                                >
-                                    {card.button}
-                                </Button>
-                            )}
-                        </Box>
-                    </Card>
+                <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+                    <MainCard
+                        title={card.title}
+                        description={card.description}
+                        count={card.button}
+                        icon={card.icon}
+                        onClick={card.onClick || undefined} // Obsługa null
+                        link={card.link || undefined}       // Obsługa null
+                    />
                 </Grid>
             ))}
         </Grid>
