@@ -86,8 +86,7 @@ export const OrderList = () => {
                                     <TableCell>Zamówienie</TableCell>
                                     <TableCell>Data</TableCell>
                                     <TableCell>Status</TableCell>
-                                    <TableCell>E-mail</TableCell>
-                                    <TableCell>Status</TableCell>
+                                    <TableCell>Faktura VAT?</TableCell>
                                     <TableCell align="right"></TableCell>
                                 </TableRow>
                             </TableHead>

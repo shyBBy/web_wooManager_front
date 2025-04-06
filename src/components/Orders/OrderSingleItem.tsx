@@ -30,26 +30,8 @@ export const OrderSingleItem: React.FC<OrderSingleItemProps> = ({ order }) => {
                 </TableCell>
                 <TableCell>{formatDateToPolish(order.date_created)}</TableCell>
                 <TableCell color={getStatusColor(order?.status)}>{OrderStatusConverter(order?.status)}</TableCell>
-                <TableCell>ORDER 4</TableCell>
-                <TableCell>ORDER 5</TableCell>
+                <TableCell>TAK</TableCell>
                 <TableCell align="right">
-                    <Tooltip title="Akceptuj">
-                        <IconButton
-                            sx={{ color: theme.palette.text.primary }}
-
-                        >
-                            <CheckIcon />
-                        </IconButton>
-                    </Tooltip>
-                    <Tooltip title="Odrzuc">
-                        <IconButton
-                            sx={{ color: theme.palette.text.primary }}
-
-                        >
-                            <CloseIcon />
-                        </IconButton>
-                    </Tooltip>
-            
                     <Link to={`/order/${order.id}`}>
                         <Tooltip title="Szczegóły">
                             <IconButton sx={{color: theme.palette.text.primary}}>
@@ -57,11 +39,6 @@ export const OrderSingleItem: React.FC<OrderSingleItemProps> = ({ order }) => {
                             </IconButton>
                         </Tooltip>
                     </Link>
-                    <Tooltip title="Usuń">
-                        <IconButton sx={{color: theme.palette.text.primary}}>
-                            <DeleteIcon/>
-                        </IconButton>
-                    </Tooltip>
                 </TableCell>
             </TableRow>
         </>
