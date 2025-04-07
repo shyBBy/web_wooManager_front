@@ -1,82 +1,78 @@
-import React, {SyntheticEvent, useEffect, useState} from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import Api from "../../api/api";
-import {useNavigate} from "react-router-dom";
-import {Box, CircularProgress, TableContainer, TextField, Toolbar} from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
+import { Box, CircularProgress, TableContainer, TextField, Toolbar } from "@mui/material";
 import Table from "@mui/material/Table";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import TableBody from "@mui/material/TableBody";
-import {OrderSingleItem} from "./OrderSingleItem";
-import { Title } from "@mui/icons-material";
+import { OrderSingleItem } from "./OrderSingleItem";
 import { GetListOfOrdersResponse } from "../../interfaces/order.interfaces";
 
-
-interface OrderListProps {
-    orders: GetListOfOrdersResponse[];
-}
-
 export const OrderList = () => {
-    const [ordersList, setOrdersList] = useState<GetListOfOrdersResponse>([]);
+    const [ordersList, setOrdersList] = useState<GetListOfOrdersResponse>([]); // Lista zamówień
     const [loading, setLoading] = useState(true);
-    const [search, setSearch] = useState('')
-    const [inputVal, setInputVal] = useState(search);
-    const [page, setPage] = useState(1);
-    const [maxPage, setMaxPage] = useState(0)
-    const [rowsPerPage, setRowsPerPage] = useState(10);
+    const [search, setSearch] = useState(""); // Wartość zatwierdzona do wyszukiwania
+    const [searchInput, setSearchInput] = useState(""); // Wartość wpisywana przez użytkownika
 
-
-    const navigate = useNavigate()
-
-    const setSearchFromLocalState = (e: SyntheticEvent) => {
-        e.preventDefault();
-        setSearch(inputVal);
-    };
-
-    useEffect(() => {
-        (async () => {
-            await fetchData();
-        })();
-    }, []);
-
-
-    const fetchData = async () => {
+    // Funkcja pobierająca dane z API
+    const fetchData = useCallback(async () => {
         try {
             setLoading(true);
-            const data = await Api.getAllOrders();
-            console.log(data);
+            const data = await Api.getAllOrders(search); // Pobranie danych z API z filtrem
             setOrdersList(data);
         } catch (error) {
             console.error("Błąd pobierania zamówień", error);
-            
         } finally {
             setLoading(false);
-          
+        }
+    }, [search]);
+
+    useEffect(() => {
+        fetchData();
+    }, [fetchData]);
+
+    // Funkcja obsługująca wyszukiwanie
+    const handleSearch = () => {
+        setSearch(searchInput); // Zatwierdzenie wyszukiwania
+    };
+
+    const handleKeyDown = (e: React.KeyboardEvent) => {
+        if (e.key === "Enter") {
+            handleSearch(); // Wywołanie wyszukiwania po naciśnięciu Enter
         }
     };
 
-    return(
+    const handleBlur = () => {
+        handleSearch(); // Wywołanie wyszukiwania po opuszczeniu pola
+    };
+
+    return (
         <>
-            {loading ? ( // Wyświetlanie CircularProgress podczas ładowania danych
-                <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+            {loading ? (
+                <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
                     <CircularProgress />
                 </Box>
             ) : (
                 <>
                     <Toolbar
                         sx={{
-                            pl: {sm: 2},
-                            pr: {xs: 1, sm: 1}
+                            pl: { sm: 2 },
+                            pr: { xs: 1, sm: 1 },
                         }}
                     >
                         <Box>
-                            <form className="search" onSubmit={e => e.preventDefault()}>
-                                <TextField id="outlined-search" label={<SearchIcon/>} type="search" size="small" value={search}
-                                           onChange={(e) => {
-                                               setSearch(e.target.value)
-                                           }}/>
-                            </form>
+                            <TextField
+                                id="outlined-search"
+                                label="Wyszukaj zamówienie"
+                                placeholder="Podaj nr zamówienia, aby wyszukać"
+                                type="search"
+                                size="small"
+                                value={searchInput}
+                                onChange={(e) => setSearchInput(e.target.value)} // Aktualizacja searchInput
+                                onKeyDown={handleKeyDown} // Obsługa Enter
+                                onBlur={handleBlur} // Obsługa opuszczenia pola
+                            />
                         </Box>
                     </Toolbar>
                     <TableContainer>
@@ -91,19 +87,14 @@ export const OrderList = () => {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {
-                                    ordersList.map(order => (
-                                        <OrderSingleItem order={order} key={order.id} />
-                                    ))
-                                }
+                                {ordersList.map((order) => (
+                                    <OrderSingleItem order={order} key={order.id} />
+                                ))}
                             </TableBody>
                         </Table>
-                        {/*<Box sx={{p: 2}}>*/}
-                        {/*    <CustomerTableOptions maxPage={maxPage} handleChangePage={handleChange}/>*/}
-                        {/*</Box>*/}
                     </TableContainer>
                 </>
             )}
         </>
-    )
-}
+    );
+};

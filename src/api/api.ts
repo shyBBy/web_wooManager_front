@@ -1,4 +1,5 @@
 import {config} from "../config/config";
+import { GetListOfOrdersResponse } from "../interfaces/order.interfaces";
 
 class API {
     private baseUrl: string;
@@ -20,6 +21,7 @@ class API {
                 credentials: 'include',
             });
             const data = await response.json()
+            console.log(data)
             return data
         } catch (error) {
             console.error('Błąd pobierania zamówienia:', error);
@@ -27,16 +29,15 @@ class API {
         }
     }
 
-    public async getAllOrders() {
+    public async getAllOrders(search?: string): Promise<GetListOfOrdersResponse> {
         try {
-
-            const response = await fetch(`${this.baseUrl}/order/list`, {
+            const response = await fetch(`${this.baseUrl}/order/list?search=${search || ''}`, {
                 credentials: 'include',
             });
-            const data = await response.json()
-            return data
+            const data: GetListOfOrdersResponse = await response.json();
+            return data;
         } catch (error) {
-            console.error('Błąd pobierania wszystkich zamówień:', error);
+            console.error("Błąd pobierania wszystkich zamówień:", error);
             throw error;
         }
     }
