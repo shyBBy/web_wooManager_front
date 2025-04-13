@@ -1,12 +1,9 @@
-import React, {useEffect, useState} from "react";
-import {useParams} from "react-router-dom";
-import {MainLayout} from "../../layouts/MainLayout";
-import {config} from "../../config/config";
-import { GetOneOrderResponse } from "../../interfaces/order.interfaces";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { MainLayout } from "../../layouts/MainLayout";
+import { config } from "../../config/config";
+import { GetOneOrderResponse } from "../../types/order/order"; // Zmieniono na order.ts
 import { MainContent } from "../../components/Orders/OrderProfilePage/MainContent/MainContent";
-import Api from "../../api/api";
-
-
 
 export const OrderProfilePage = () => {
     const [order, setOrder] = useState<GetOneOrderResponse | null>(null);
@@ -20,7 +17,7 @@ export const OrderProfilePage = () => {
             })
                 .then((response) => response.json())
                 .then((data) => {
-                    setOrder(data);
+                    setOrder(data); // Dane są już zgodne z GetOneOrderResponse
                     setLoading(false);
                 })
                 .catch((error) => {

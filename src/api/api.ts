@@ -1,5 +1,6 @@
 import {config} from "../config/config";
-import { GetListOfOrdersResponse } from "../interfaces/order.interfaces";
+import { GetOneOrderResponse } from "../types/order/order"; // Zmieniono na order.ts
+import { WooCommerceOrdersResponse } from "../types/order/WooCommerceOrder";
 
 class API {
     private baseUrl: string;
@@ -20,7 +21,7 @@ class API {
             const response = await fetch(`${this.baseUrl}/order/${orderId}`, {
                 credentials: 'include',
             });
-            const data = await response.json()
+            const data: GetOneOrderResponse  = await response.json()
             console.log(data)
             return data
         } catch (error) {
@@ -29,12 +30,12 @@ class API {
         }
     }
 
-    public async getAllOrders(search?: string): Promise<GetListOfOrdersResponse> {
+    public async getAllOrders(search?: string): Promise<WooCommerceOrdersResponse> {
         try {
             const response = await fetch(`${this.baseUrl}/order/list?search=${search || ''}`, {
                 credentials: 'include',
             });
-            const data: GetListOfOrdersResponse = await response.json();
+            const data: WooCommerceOrdersResponse = await response.json();
             return data;
         } catch (error) {
             console.error("Błąd pobierania wszystkich zamówień:", error);

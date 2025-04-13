@@ -1,4 +1,5 @@
-import { OrderStatusColor } from "../interfaces/order.interfaces";
+import { OrderStatusColor } from "../types/order/order";
+
 
 
 
